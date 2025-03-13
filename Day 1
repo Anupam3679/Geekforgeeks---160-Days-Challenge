@@ -1,0 +1,28 @@
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    int getSecondLargest(vector<int>& arr) {
+        int n = arr.size();
+        if (n < 2) {
+            return -1; // Not enough elements to find the second largest
+        }
+        
+        int largest = arr[0];
+        int secondLargest = -1; // Initialize to -1 assuming all elements are the same
+        
+        for (int i = 1; i < n; ++i) {
+            if (arr[i] > largest) {
+                secondLargest = largest;
+                largest = arr[i];
+            } else if (arr[i] < largest) {
+                if (secondLargest == -1 || arr[i] > secondLargest) {
+                    secondLargest = arr[i];
+                }
+            }
+        }
+        
+        return secondLargest;
+    }
+};
